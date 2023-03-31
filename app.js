@@ -10,13 +10,16 @@ router.get('/',function(req,res){
   // direccionamiento a la pagina inicial.
 });
  
+// 1 - Redireccionamos a las páginas de control de colaborador
 router.get('/addcol',function(req,res){
   res.sendFile(path.join(__dirname+'/front_end/views/añadir_colaborador.html'));
 });
+
+router.get('/modcol',function(req,res){
+    res.sendFile(path.join(__dirname+'/front_end/views/modificar_colaborador.html'));
+  });
  
-router.get('/sitemap',function(req,res){
-  res.sendFile(path.join(__dirname+'/sitemap.html'));
-});
+
  
 //add the router
 app.use('/', router);

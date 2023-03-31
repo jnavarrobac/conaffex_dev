@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Añadir Colaborador | Conaffex</title>
+    <title>Modificar Colaborador | Conaffex</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../assets/vendors/css/vendor.bundle.base.css">
@@ -161,7 +161,7 @@
             <ul class="navbar-nav w-100">
               <li class="nav-item w-100">
                 <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                  <input type="text" class="form-control" placeholder="Search products">
+                  <input type="text" class="form-control" placeholder="Buscar Colaborador">
                 </form>
               </li>
             </ul>
@@ -346,53 +346,59 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> Añadir Colaborador </h3>
+              <h3 class="page-title"> Modificar Colaborador </h3>
             </div>
-            <div class="row">              
-              <div class="col-12 grid-margin stretch-card">
+            <div class="row">
+              <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">                    
-                    <form class="forms-sample">
-                      <div class="form-group">
-                        <label for="exampleInputName1">Nombre Completo</label>
-                        <input type="text" class="form-control" id="exampleInputName1">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail3">Identificación</label>
-                        <input type="number" class="form-control" id="exampleInputEmail3">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword4">Telefóno</label>
-                        <input type="number" class="form-control" id="exampleInputPassword4" placeholder="xxxx-xxxx">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword4">Nº Tarjeta</label>
-                        <input type="number" class="form-control" id="exampleInputPassword4" placeholder="xxxx-xxxx-xxxx-xxxx">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleSelectGender">Género</label>
-                        <select class="form-control" id="exampleSelectGender">
-                          <option>Hombre</option>
-                          <option>Mujer</option>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleSelectGender">Tipo</label>
-                        <select class="form-control" id="exampleSelectGender">
-                          <option>Nacional</option>
-                          <option>Extranjero</option>
-                        </select>
-                      </div>                    
-                      <div class="form-group">
-                        <label for="exampleTextarea1">Descripción</label>
-                        <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
-                      </div>
-                      <button type="submit" class="btn btn-primary mr-2">Agregar</button>
-                      <button class="btn btn-dark">Cancelar</button>
-                    </form>
+                    <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>User</th>
+                            <th>Product</th>
+                            <th>Sale</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Jacob</td>
+                            <td>Photoshop</td>
+                            <td class="text-danger"> 28.76% <i class="mdi mdi-arrow-down"></i></td>
+                            <td><label class="badge badge-danger">Pending</label></td>
+                          </tr>
+                          <tr>
+                            <td>Messsy</td>
+                            <td>Flash</td>
+                            <td class="text-danger"> 21.06% <i class="mdi mdi-arrow-down"></i></td>
+                            <td><label class="badge badge-warning">In progress</label></td>
+                          </tr>
+                          <tr>
+                            <td>John</td>
+                            <td>Premier</td>
+                            <td class="text-danger"> 35.00% <i class="mdi mdi-arrow-down"></i></td>
+                            <td><label class="badge badge-info">Fixed</label></td>
+                          </tr>
+                          <tr>
+                            <td>Peter</td>
+                            <td>After effects</td>
+                            <td class="text-success"> 82.00% <i class="mdi mdi-arrow-up"></i></td>
+                            <td><label class="badge badge-success">Completed</label></td>
+                          </tr>
+                          <tr>
+                            <td>Dave</td>
+                            <td>53275535</td>
+                            <td class="text-success"> 98.05% <i class="mdi mdi-arrow-up"></i></td>
+                            <td><label class="badge badge-warning">In progress</label></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
-              </div>                      
+              </div>                        
             </div>
           </div>
           <!-- content-wrapper ends -->
