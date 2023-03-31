@@ -2,14 +2,16 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const router = express.Router();
+
+app.use(express.static(path.join(__dirname, '/front_end')));
  
 router.get('/',function(req,res){
   res.sendFile(path.join(__dirname+'/front_end/views/index.html'));
   // direccionamiento a la pagina inicial.
 });
  
-router.get('/about',function(req,res){
-  res.sendFile(path.join(__dirname+'/about.html'));
+router.get('/addcol',function(req,res){
+  res.sendFile(path.join(__dirname+'/front_end/views/añadir_colaborador.html'));
 });
  
 router.get('/sitemap',function(req,res){
