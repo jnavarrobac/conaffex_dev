@@ -6,18 +6,18 @@ const router = express.Router();
 app.use(express.static(path.join(__dirname, '/front_end')));
  
 router.get('/',function(req,res){
-  res.sendFile(path.join(__dirname+'/front_end/views/index.html'));
-  // direccionamiento a la pagina inicial.
+    res.sendFile(path.join(__dirname+'/front_end/views/index.html'));
+    // direccionamiento a la pagina inicial.
 });
  
 // 1 - Redireccionamos a las páginas de control de colaborador
 router.get('/addcol',function(req,res){
-  res.sendFile(path.join(__dirname+'/front_end/views/añadir_colaborador.html'));
+    res.sendFile(path.join(__dirname+'/front_end/views/añadir_colaborador.html'));
 });
 
 router.get('/modcol',function(req,res){
     res.sendFile(path.join(__dirname+'/front_end/views/modificar_colaborador.html'));
-  });
+});
  
 
  
