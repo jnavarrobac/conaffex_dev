@@ -17,6 +17,7 @@
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="../assets/css/style.css">
+    
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../assets/images/favicon.png" />
   </head>
@@ -348,11 +349,12 @@
             <div class="page-header">
               <h3 class="page-title"> Modificar Colaborador </h3>
             </div>
+          
             <div class="row">
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">                    
-                    <div class="table-responsive">
+                    <div class="table-responsive">                      
                       <table class="table table-hover" id="tablaUpdColaboradores">
                         <thead>
                           <tr>
@@ -373,9 +375,83 @@
                 </div>
               </div>                        
             </div>
+
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">                  
+                  <form class="form-sample">
+                    <p class="card-description"> Información del Colaborador </p>
+                    <div class="row">                    
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Nombre</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" id="campoNombreActualizar"/>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Identificación</label>
+                          <div class="col-sm-9">
+                            <input type="number" class="form-control" id="campoIdentificacionActualizar"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Telefóno</label>
+                          <div class="col-sm-9">
+                            <input type="number" class="form-control" id="campoTelefonoActualizar" placeholder="xxxx-xxxx" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Nº Tarjeta</label>
+                          <div class="col-sm-9">
+                            <input type="number" class="form-control" id="campoTarjetaActualizar" placeholder="xxxx-xxxx-xxxx-xxxx" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Género</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" id="selectorGeneroActualizar">
+                              <option>Hombre</option>
+                              <option>Mujer</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Tipo</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" id="selectorTipoActualizar">
+                              <option>Nacional</option>
+                              <option>Extranjero</option>                              
+                            </select>
+                          </div>
+                        </div>
+                      </div>                      
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Actualizar</button>
+                    <button class="btn btn-dark">Atrás</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:../../partials/_footer.html -->
+
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
               <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Conaffex 2023</span>
@@ -389,6 +465,7 @@
       <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
+
     <!-- plugins:js -->
     <script src="../assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
@@ -410,7 +487,7 @@
     <!-- End custom js for this page -->
 
     <!-- Referenciamos al script que contiene la lógica de negocio -->
-    <script type="module" src="../js/colaborador/colaboradorUpd.js"></script>
+    <script src="../js/colaborador/colaboradorUpd.js"></script>
 
   </body>
 </html>

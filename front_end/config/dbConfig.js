@@ -2,6 +2,6 @@
 
 function dbConfig() {
     return "http://localhost:5000/";
-  }
+}
   
 export { dbConfig };

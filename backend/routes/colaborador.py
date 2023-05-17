@@ -36,16 +36,15 @@ def getAllColaboradores(mysql):
     return jsonify(colaboradores)
 
 
-def getOneColaborador(mysql,request):
+def getColaboradorFiltro(mysql,request):
  
-    msg = ''
     colaborador = ''
     datoIngresado = json.loads(request.data)
 
-    if request.method == 'POST' and 'numero' in datoIngresado:
-       numero = datoIngresado["numero"]      
+    if request.method == 'POST' and 'datoIngresado' in datoIngresado:
+       dato = datoIngresado["datoIngresado"]      
        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-       cursor.execute('SELECT * FROM COLABORADOR_FEX WHERE NUMERO = % s', (numero, ))
+       cursor.execute("SELECT * FROM COLABORADOR_FEX WHERE NUMERO LIKE '%"+dato+"%' OR NOMBRE LIKE '%"+dato+"%'")
        colaborador = cursor.fetchall()
        msg = 'Se ha encontrado el colaborador con éxito!'
     
@@ -54,6 +53,23 @@ def getOneColaborador(mysql,request):
 
     return jsonify(colaborador)
 
+def getOneColaborador(mysql,request):
+ 
+    colaborador = ''
+    datoIngresado = json.loads(request.data)
+
+    if request.method == 'POST' and 'datoIngresado' in datoIngresado:
+       dato = datoIngresado["datoIngresado"]      
+       cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+       sql_select_query = """SELECT * FROM COLABORADOR_FEX WHERE NUMERO = %s"""
+       cursor.execute(sql_select_query, (dato,))
+       colaborador = cursor.fetchall()
+       msg = 'Se ha encontrado el colaborador con éxito!'
+    
+    elif request.method == 'POST':
+       msg = 'No se ha encontrado ningún colaborador!'
+
+    return jsonify(colaborador)
 
 def updateColaborador(mysql,request):
 

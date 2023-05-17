@@ -1,14 +1,25 @@
 
-import { dbConfig } from "/config/dbConfig.js";
+//import { dbConfig } from "/config/dbConfig.js";
 
 // ---- DECLARAMOS LOS ELEMENTOS DEL DOM ----
 
 var body = document.getElementsByTagName("body")[0];
 body.addEventListener("load", init(), false);
 
-const inputColaboradoresBuscar = document.getElementById('inputBuscarColaboradores');
+const inputColaboradoresBuscar      = document.getElementById('inputBuscarColaboradores');
+const inputNombreActualizar         = document.getElementById('campoNombreActualizar');
+const inputIdentificacionActualizar = document.getElementById('campoIdentificacionActualizar');
+const inputTelefonoActualizar       = document.getElementById('campoTelefonoActualizar');
+const inputTarjetaActualizar        = document.getElementById('campoTarjetaActualizar');
 
 const tablaColaboradores = document.getElementById("tablaUpdColaboradores");
+
+const selectorGeneroActualizar = document.getElementById('selectorGeneroActualizar');
+const selectorTipoActualizar   = document.getElementById('selectorTipoActualizar');
+
+function dbConfig() {
+    return "http://localhost:5000/";
+}
 
 // LLAMAMOS LA FUNCIÓN QUE TRAE LA LISTA DE COLABORADORES
 // EN EL MOMENTO QUE SE CREA LA VENTANA
@@ -26,6 +37,7 @@ function init() {
         setColaboradoresTabla(response); 
     };
 };
+
 
 // DECLARAMOS FUNCION PARA COMPLETAR LA TABLA 
 // CON LA LISTA DE COLABORADORES
@@ -64,8 +76,51 @@ function setColaboradoresTabla(data){
         cell5.innerHTML = data[i].NUM_TARJETA;
         cell5.className = "text-center";
         
-        cell6.innerHTML = '<td><button type="button" class="btn btn-inverse-info btn-icon"><i class="mdi mdi-account-settings"></i></button></td>';
+        cell6.innerHTML = "<td><button type='button' class='btn btn-inverse-info btn-icon' onclick=seleccionarColaborador("+data[i].NUMERO+");><i class='mdi mdi-account-settings'></i></button></td>";
         cell6.className = "text-center";
 
     };
 };
+
+// DECLARAMOS FUNCION PARA COMPLETAR FILTRAR COLABORADORES SEGÚN EL BUSCADOR 
+
+inputColaboradoresBuscar.addEventListener('keyup', function(){
+    
+    const configDB = dbConfig();
+
+    const xhr = new XMLHttpRequest();
+    const body = JSON.stringify({"datoIngresado": inputColaboradoresBuscar.value} );
+    xhr.open('POST', configDB + 'getColaboradorFiltro');
+    xhr.responseType = 'json';
+    xhr.send(body);
+
+    xhr.onload = function() {
+        let response = xhr.response;
+        setColaboradoresTabla(response); 
+    };
+
+});
+
+// DECLARAMOS FUNCION PARA SELECCIONAR EL COLABORADOR A ACTUALIZAR
+function seleccionarColaborador(numeroColaborador){
+
+    const configDB = dbConfig();
+
+    const xhr = new XMLHttpRequest();
+    const body = JSON.stringify({"datoIngresado": numeroColaborador} );
+    xhr.open('POST', configDB + 'getOneColaborador');
+    xhr.responseType = 'json';
+    xhr.send(body);
+
+    xhr.onload = function() {
+        let response = xhr.response; 
+
+        inputNombreActualizar.value = response[0].NOMBRE;
+        inputIdentificacionActualizar.value = response[0].IDENTIFICACION;
+        inputTarjetaActualizar.value = response[0].NUM_TARJETA;
+        inputTelefonoActualizar .value = response[0].TELEFONO; 
+    };
+
+};
+
+
