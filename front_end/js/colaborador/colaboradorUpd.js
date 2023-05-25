@@ -17,6 +17,12 @@ const tablaColaboradores = document.getElementById("tablaUpdColaboradores");
 const selectorGeneroActualizar = document.getElementById('selectorGeneroActualizar');
 const selectorTipoActualizar   = document.getElementById('selectorTipoActualizar');
 
+const seccionActualizarColaborador       = document.getElementById('seccionActualizarColaborador');
+const seccionTablaActualizarColaborador  = document.getElementById('seccionTablaActualizarColaborador');
+
+const botonActualizar = document.getElementById('buttonActualizar');
+const botonAtras      = document.getElementById('buttonAtras');
+
 function dbConfig() {
     return "http://localhost:5000/";
 }
@@ -37,7 +43,6 @@ function init() {
         setColaboradoresTabla(response); 
     };
 };
-
 
 // DECLARAMOS FUNCION PARA COMPLETAR LA TABLA 
 // CON LA LISTA DE COLABORADORES
@@ -104,6 +109,10 @@ inputColaboradoresBuscar.addEventListener('keyup', function(){
 // DECLARAMOS FUNCION PARA SELECCIONAR EL COLABORADOR A ACTUALIZAR
 function seleccionarColaborador(numeroColaborador){
 
+    //ESCONDEMOS LA TABLA DE COLABORADORES Y MOSTRAMOS EL PANEL DE ACTUALIZAR
+    seccionTablaActualizarColaborador.style.display = "none";
+    seccionActualizarColaborador.style.display = "block"
+
     const configDB = dbConfig();
 
     const xhr = new XMLHttpRequest();
@@ -124,3 +133,10 @@ function seleccionarColaborador(numeroColaborador){
 };
 
 
+botonAtras.addEventListener('click', function(){
+    
+    //MOSTRAMOS LA TABLA DE COLABORADORES Y ESCONDEMOS EL PANEL DE ACTUALIZAR
+    seccionTablaActualizarColaborador.style.display = "block";
+    seccionActualizarColaborador.style.display = "none"
+
+});

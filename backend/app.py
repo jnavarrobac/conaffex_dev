@@ -4,6 +4,7 @@ from flask_cors import CORS
 
 ## Importamos los files con las funciones de cada módulo
 from backend.routes.colaborador import *
+from backend.routes.fincas import *
 
 app = Flask(__name__)
 
@@ -48,6 +49,14 @@ def actualizarColaborador():
     return updateColaborador(mysql,request)
 
 ## 1. ---- DECLARAMOS LAS RUTAS DE FUNCIÓN DE COLABORADOR ---- ##
+
+## 2. ---- DECLARAMOS LAS RUTAS DE FUNCIÓN DE FINCAS ---- ##
+
+@app.route('/fincas',methods = ['GET'])
+def obtenerFincas():    
+    return getAllFincas(mysql)
+
+## 2. ---- DECLARAMOS LAS RUTAS DE FUNCIÓN DE FINCAS ---- ##
 
 if __name__ == "_main_":
    app.run(debug=True)
