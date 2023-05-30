@@ -5,7 +5,18 @@
 var body = document.getElementsByTagName("body")[0];
 body.addEventListener("load", init(), false);
 
+const inputFincasBuscar        = document.getElementById('inputBuscarFincas');
+const inputNombreActualizar    = document.getElementById('campoNombreActualizar');
+const inputTamanoActualizar    = document.getElementById('campoTamanoActualizar');
+const inputUbicacionActualizar = document.getElementById('campoUbicacionActualizar');
+
 const tablaFincas = document.getElementById("tablaUpdFincas");
+
+const seccionActualizarFinca       = document.getElementById('seccionActualizarFinca');
+const seccionTablaActualizarFinca  = document.getElementById('seccionTablaActualizarFinca');
+
+const botonActualizar = document.getElementById('buttonActualizar');
+const botonAtras      = document.getElementById('buttonAtras');
 
 function dbConfig() {
     return "http://localhost:5000/";
@@ -65,8 +76,60 @@ function setFincasTabla(data){
         cell5.innerHTML = data[i].IDENTIFICACION +' - '+ data[i].PROPIETARIO;
         cell5.className = "text-center";
         
-        cell6.innerHTML = "<td><button type='button' class='btn btn-inverse-danger btn-icon' onclick=seleccionarColaborador("+data[i].NUMERO+");><i class='mdi mdi-image-multiple'></i></button></td>";
+        cell6.innerHTML = "<td><button type='button' class='btn btn-inverse-danger btn-icon' onclick=seleccionarFinca("+data[i].NUMERO+");><i class='mdi mdi-image-multiple'></i></button></td>";
         cell6.className = "text-center";
 
     };
 };
+
+// DECLARAMOS FUNCION PARA COMPLETAR FILTRAR FINCAS SEGÚN EL BUSCADOR 
+
+inputFincasBuscar.addEventListener('keyup', function(){
+    
+    const configDB = dbConfig();
+
+    const xhr = new XMLHttpRequest();
+    const body = JSON.stringify({"datoIngresado": inputFincasBuscar.value} );
+    xhr.open('POST', configDB + 'getFincaFiltro');
+    xhr.responseType = 'json';
+    xhr.send(body);
+
+    xhr.onload = function() {
+        let response = xhr.response;
+        setFincasTabla(response); 
+    };
+
+});
+
+// DECLARAMOS FUNCION PARA SELECCIONAR LA FINCA A ACTUALIZAR
+function seleccionarFinca(numeroFinca){
+
+    //ESCONDEMOS LA TABLA DE COLABORADORES Y MOSTRAMOS EL PANEL DE ACTUALIZAR
+    seccionTablaActualizarFinca.style.display = "none";
+    seccionActualizarFinca.style.display = "block"
+
+    const configDB = dbConfig();
+
+    const xhr = new XMLHttpRequest();
+    const body = JSON.stringify({"datoIngresado": numeroFinca} );
+    xhr.open('POST', configDB + 'getOneFinca');
+    xhr.responseType = 'json';
+    xhr.send(body);
+
+    xhr.onload = function() {
+        let response = xhr.response; 
+
+        inputNombreActualizar.value = response[0].NOMBRE;
+        inputTamanoActualizar.value = response[0].TAMANO;
+        inputUbicacionActualizar.value = response[0].UBICACION; 
+    };
+
+};
+
+botonAtras.addEventListener('click', function(){
+    
+    //MOSTRAMOS LA TABLA DE COLABORADORES Y ESCONDEMOS EL PANEL DE ACTUALIZAR
+    seccionTablaActualizarFinca.style.display = "block";
+    seccionActualizarFinca.style.display = "none"
+
+});

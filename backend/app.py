@@ -56,6 +56,14 @@ def actualizarColaborador():
 def obtenerFincas():    
     return getAllFincas(mysql)
 
+@app.route('/getFincaFiltro',methods = ['POST'])
+def obtenerFinca():    
+    return getFincaFiltro(mysql,request)
+
+@app.route('/getOneFinca',methods = ['POST'])
+def obtenerOneFinca():    
+    return getOneFinca(mysql,request)
+
 ## 2. ---- DECLARAMOS LAS RUTAS DE FUNCIÓN DE FINCAS ---- ##
 
 if __name__ == "_main_":

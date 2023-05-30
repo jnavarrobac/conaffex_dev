@@ -380,11 +380,11 @@
               <div class="card">
                 <div class="card-body">                  
                   
-                    <p class="card-description"> Información del Colaborador </p>
+                    <p class="card-description"> Información de la Finca </p>
                     <div class="row">                    
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Nombre</label>
+                          <label class="col-sm-3 col-form-label">Nombre:</label>
                           <div class="col-sm-9">
                             <input type="text" class="form-control" id="campoNombreActualizar"/>
                           </div>
@@ -392,9 +392,9 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Identificación</label>
+                          <label class="col-sm-3 col-form-label">Tamaño:</label>
                           <div class="col-sm-9">
-                            <input type="number" class="form-control" id="campoIdentificacionActualizar"/>
+                            <input type="number" class="form-control" id="campoTamanoActualizar"/>
                           </div>
                         </div>
                       </div>
@@ -402,45 +402,25 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Telefóno</label>
+                          <label class="col-sm-3 col-form-label">Ubicación:</label>
                           <div class="col-sm-9">
-                            <input type="number" class="form-control" id="campoTelefonoActualizar" placeholder="xxxx-xxxx" />
+                            <input type="text" class="form-control" id="campoUbicacionActualizar"/>
                           </div>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Nº Tarjeta</label>
+                          <label class="col-sm-3 col-form-label">Propietario:</label>
                           <div class="col-sm-9">
-                            <input type="number" class="form-control" id="campoTarjetaActualizar" placeholder="xxxx-xxxx-xxxx-xxxx" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Género</label>
-                          <div class="col-sm-9">
-                            <select class="form-control" id="selectorGeneroActualizar">
+                            <select class="form-control" id="selectorPropietarioActualizar">
                               <option>Hombre</option>
                               <option>Mujer</option>
                             </select>
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Tipo</label>
-                          <div class="col-sm-9">
-                            <select class="form-control" id="selectorTipoActualizar">
-                              <option>Nacional</option>
-                              <option>Extranjero</option>                              
-                            </select>
-                          </div>
-                        </div>
-                      </div>                      
                     </div>
+                    
                     <button id="buttonActualizar" type="submit" class="btn btn-primary mr-2">Actualizar</button>
                     <button id="buttonAtras" class="btn btn-dark">Atrás</button>
                   
