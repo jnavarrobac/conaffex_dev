@@ -20,6 +20,8 @@ const selectorTipoActualizar   = document.getElementById('selectorTipoActualizar
 const seccionActualizarColaborador       = document.getElementById('seccionActualizarColaborador');
 const seccionTablaActualizarColaborador  = document.getElementById('seccionTablaActualizarColaborador');
 
+const etiquetaNumeroColaboradorAct       = document.getElementById('etiquetaNumeroColaborador');
+
 const botonActualizar = document.getElementById('buttonActualizar');
 const botonAtras      = document.getElementById('buttonAtras');
 
@@ -123,11 +125,13 @@ function seleccionarColaborador(numeroColaborador){
 
     xhr.onload = function() {
         let response = xhr.response; 
-
+        etiquetaNumeroColaboradorAct.innerHTML = response[0].NUMERO;
         inputNombreActualizar.value = response[0].NOMBRE;
         inputIdentificacionActualizar.value = response[0].IDENTIFICACION;
         inputTarjetaActualizar.value = response[0].NUM_TARJETA;
-        inputTelefonoActualizar .value = response[0].TELEFONO; 
+        inputTelefonoActualizar .value = response[0].TELEFONO;
+        selectorGeneroActualizar.value = response[0].GENERO;
+        selectorTipoActualizar.value = response[0].TIPO;
     };
 
 };
@@ -139,4 +143,26 @@ botonAtras.addEventListener('click', function(){
     seccionTablaActualizarColaborador.style.display = "block";
     seccionActualizarColaborador.style.display = "none"
 
+});
+
+// DECLARAMOS LA FUNCIÓN QUE EJECUTA LA ACCIÓN DE ACTUALIZAR LOS DATOS DE UNA FINCA
+botonActualizar.addEventListener('click', function(){
+       
+    const configDB = dbConfig();
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("PUT", configDB + "colaborador");
+    const body = JSON.stringify({"numeroColaborador": etiquetaNumeroColaboradorAct.innerHTML,"nombreCompleto": inputNombreActualizar.value, "identificacion": inputIdentificacionActualizar.value, "tarjeta": inputTarjetaActualizar.value, "telefono": inputTelefonoActualizar.value, "tipo": selectorTipoActualizar.value, "genero": selectorGeneroActualizar.value} );
+
+    xhr.onload = () => {
+    
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(JSON.parse(xhr.responseText));
+            init();// Se recarga la data actualizada, para ser mostrada
+        } else {
+            console.log(`Error: ${xhr.status}`);
+        }
+    };
+
+    xhr.send(body);
 });

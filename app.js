@@ -20,6 +20,10 @@ router.get('/modcol',function(req,res){
 });
 
 // 2 - Redireccionamos a las páginas de control de finca
+router.get('/addfinca',function(req,res){
+    res.sendFile(path.join(__dirname+'/front_end/views/añadir_finca.html'));
+});
+
 router.get('/modfinca',function(req,res){
     res.sendFile(path.join(__dirname+'/front_end/views/modificar_finca.html'));
 }); 

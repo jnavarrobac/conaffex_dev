@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Modificar Colaborador | Conaffex</title>
+    <title>Añadir Finca | Conaffex</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../assets/vendors/css/vendor.bundle.base.css">
@@ -17,7 +17,6 @@
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="../assets/css/style.css">
-    
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../assets/images/favicon.png" />
   </head>
@@ -162,7 +161,7 @@
             <ul class="navbar-nav w-100">
               <li class="nav-item w-100">
                 <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                  <input type="text" class="form-control" placeholder="Buscar Colaborador" id="inputBuscarColaboradores">
+                  <input type="text" class="form-control" placeholder="Search products">
                 </form>
               </li>
             </ul>
@@ -347,110 +346,60 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> Modificar Colaborador </h3>
+              <h3 class="page-title"> Añadir Finca </h3>
             </div>
-          
-            <div class="row">
-              <div class="col-lg-12 grid-margin stretch-card" id="seccionTablaActualizarColaborador">
+            <div class="row">              
+              <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
-                  <div class="card-body">                    
-                    <div class="table-responsive">                      
-                      <table class="table table-hover" id="tablaUpdColaboradores">
-                        <thead>
-                          <tr>
-                            <th class="text-center">Nº</th>
-                            <th class="text-center">Nombre Completo</th>
-                            <th class="text-center">Identificación</th>
-                            <th class="text-center">Telefóno</th>
-                            <th class="text-center">Nº Tarjeta</th>
-                            <th class="text-center">Editar</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>                        
-            </div>
-
-            <div class="col-lg-12 grid-margin stretch-card" id="seccionActualizarColaborador" style="display: none;">
-              <div class="card">
-                <div class="card-body">             
-                    <p class="card-description"> Información del Colaborador [ <label id="etiquetaNumeroColaborador"></label> ]:</p>
-                    <div class="row">                    
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Nombre</label>
-                          <div class="col-sm-9">
-                            <input type="text" class="form-control" id="campoNombreActualizar"/>
+                  <div class="card-body">             
+                      <p class="card-description"> Datos de la Finca:</p>
+                      <div class="row">                    
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Nombre:</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="campoNombreAgregar"/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Tamaño:</label>
+                            <div class="col-sm-9">
+                              <input type="number" class="form-control" id="campoTamanoAgregar"/>
+                            </div>
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Identificación</label>
-                          <div class="col-sm-9">
-                            <input type="number" class="form-control" id="campoIdentificacionActualizar"/>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Ubicación:</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="campoUbicacionAgregar"/>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Telefóno</label>
-                          <div class="col-sm-9">
-                            <input type="number" class="form-control" id="campoTelefonoActualizar" placeholder="xxxx-xxxx" />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Nº Tarjeta</label>
-                          <div class="col-sm-9">
-                            <input type="number" class="form-control" id="campoTarjetaActualizar" placeholder="xxxx-xxxx-xxxx-xxxx" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Género</label>
-                          <div class="col-sm-9">
-                            <select class="form-control" id="selectorGeneroActualizar">
-                              <option>Hombre</option>
-                              <option>Mujer</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Tipo</label>
-                          <div class="col-sm-9">
-                            <select class="form-control" id="selectorTipoActualizar">
-                              <option>Nacional</option>
-                              <option>Extranjero</option>                              
-                            </select>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Propietario:</label>
+                            <div class="col-sm-9">
+                              <select class="form-control" id="selectorPropietarioAgregar">                                
+                              </select>
+                            </div>
                           </div>
                         </div>
                       </div>                      
-                    </div>
-                    <button id="buttonActualizar" type="submit" class="btn btn-primary mr-2">Actualizar</button>
-                    <button id="buttonAtras" class="btn btn-dark">Atrás</button>
-                  
+                      <button id="buttonAgregar" type="button" class="btn btn-primary mr-2">Agregar</button>
+                      <button id="buttonCancelar" type="button"  class="btn btn-dark">Cancelar</button>
+                    
+                  </div>
                 </div>
-              </div>
+              </div>                      
             </div>
-
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:../../partials/_footer.html -->
-
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
               <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Conaffex 2023</span>
@@ -464,7 +413,6 @@
       <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
-
     <!-- plugins:js -->
     <script src="../assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
@@ -486,7 +434,7 @@
     <!-- End custom js for this page -->
 
     <!-- Referenciamos al script que contiene la lógica de negocio -->
-    <script src="../js/colaborador/colaboradorUpd.js"></script>
+    <script src="../js/finca/fincaAdd.js"></script>
 
   </body>
 </html>

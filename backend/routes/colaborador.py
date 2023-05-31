@@ -76,19 +76,18 @@ def updateColaborador(mysql,request):
     msg = ''
     datosActualizar = json.loads(request.data)
 
-    if request.method == 'PUT' and 'numeroColaborador' in datosActualizar and 'nombreCompleto' in datosActualizar and 'identificacion' in datosActualizar and 'tarjeta' in datosActualizar and 'telefono' in datosActualizar and 'observaciones' in datosActualizar and 'tipo' in datosActualizar and 'genero' in datosActualizar:
+    if request.method == 'PUT' and 'numeroColaborador' in datosActualizar and 'nombreCompleto' in datosActualizar and 'identificacion' in datosActualizar and 'tarjeta' in datosActualizar and 'telefono' in datosActualizar and 'tipo' in datosActualizar and 'genero' in datosActualizar:
        numeroColaborador = datosActualizar["numeroColaborador"]
        nombreCompleto = datosActualizar["nombreCompleto"]
        identificacion = datosActualizar["identificacion"]
        tarjeta        = datosActualizar["tarjeta"]
        telefono       = datosActualizar["telefono"]
-       observaciones  = datosActualizar["observaciones"]
        tipo           = datosActualizar["tipo"]
        genero         = datosActualizar["genero"]
 
        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-       cursor.execute("UPDATE COLABORADOR_FEX SET NOMBRE = %s, IDENTIFICACION = %s, TELEFONO = %s, NUM_TARJETA = %s, OBSERVACIONES = %s,TIPO = %s,GENERO = %s WHERE NUMERO = %s",
-                     (nombreCompleto, identificacion, telefono, tarjeta, observaciones,tipo,genero,numeroColaborador))
+       cursor.execute("UPDATE COLABORADOR_FEX SET NOMBRE = %s, IDENTIFICACION = %s, TELEFONO = %s, NUM_TARJETA = %s, TIPO = %s,GENERO = %s WHERE NUMERO = %s",
+                     (nombreCompleto, identificacion, telefono, tarjeta, tipo,genero,numeroColaborador))
        mysql.connection.commit()
        msg = 'Se ha actualizado el colaborador con éxito!'
     
