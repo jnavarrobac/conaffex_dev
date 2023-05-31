@@ -44,3 +44,26 @@ def getOneFinca(mysql,request):
        msg = 'No se ha encontrado ningún colaborador!'
 
     return jsonify(finca)
+
+def updateFinca(mysql,request):
+
+    msg = ''
+    datosActualizar = json.loads(request.data)
+   
+    if request.method == 'PUT' and 'numeroFinca' in datosActualizar and 'nombreCompleto' in datosActualizar and 'tamano' in datosActualizar and 'ubicacion' in datosActualizar and 'numeroPropietario' in datosActualizar:
+       numeroFinca    = datosActualizar["numeroFinca"]
+       nombreCompleto = datosActualizar["nombreCompleto"]
+       tamano         = datosActualizar["tamano"]
+       ubicacion      = datosActualizar["ubicacion"]
+       numeroPropietario = datosActualizar["numeroPropietario"]
+
+       cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+       cursor.execute("UPDATE FINCAS_FEX SET NOMBRE = %s, TAMANO = %s, UBICACION = %s, NUM_PROPIETARIO = %s WHERE NUMERO = %s",
+                     (nombreCompleto, tamano, ubicacion, numeroPropietario,numeroFinca))
+       mysql.connection.commit()
+       msg = 'Se ha actualizado la finca con éxito!'
+    
+    elif request.method == 'PUT':
+        msg = 'Por favor ingresar los datos solicitados!'
+    
+    return jsonify(msg)

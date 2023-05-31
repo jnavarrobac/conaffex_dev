@@ -15,6 +15,10 @@ const tablaFincas = document.getElementById("tablaUpdFincas");
 const seccionActualizarFinca       = document.getElementById('seccionActualizarFinca');
 const seccionTablaActualizarFinca  = document.getElementById('seccionTablaActualizarFinca');
 
+const etiquetaNumeroFincaAct       = document.getElementById('etiquetaNumeroFinca');
+
+const selectorPropietariosActualizar = document.getElementById('selectorPropietarioActualizar');
+
 const botonActualizar = document.getElementById('buttonActualizar');
 const botonAtras      = document.getElementById('buttonAtras');
 
@@ -117,13 +121,14 @@ function seleccionarFinca(numeroFinca){
     xhr.send(body);
 
     xhr.onload = function() {
-        let response = xhr.response; 
-
+        let response = xhr.response;
+        etiquetaNumeroFincaAct.innerHTML = response[0].NUMERO; 
         inputNombreActualizar.value = response[0].NOMBRE;
         inputTamanoActualizar.value = response[0].TAMANO;
-        inputUbicacionActualizar.value = response[0].UBICACION; 
+        inputUbicacionActualizar.value = response[0].UBICACION;
+        
+        cargarPropietariosSelector(response[0].IDENTIFICACION);
     };
-
 };
 
 botonAtras.addEventListener('click', function(){
@@ -132,4 +137,58 @@ botonAtras.addEventListener('click', function(){
     seccionTablaActualizarFinca.style.display = "block";
     seccionActualizarFinca.style.display = "none"
 
+});
+
+// DECLARAMOS LA FUNCIÓN PARA COMPLETAR EL SELECTOR DE PROPIETARIOS
+function cargarPropietariosSelector(identificacionPropietario){
+
+    const configDB = dbConfig();
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', configDB + 'usuarios');
+    xhr.responseType = 'json';
+    xhr.send();
+
+    xhr.onload = function() {
+        let response = xhr.response;
+        // AGREGAMOS LA LISTA DE PROPIETARIOS EN EL SELECTOR
+        for (var i=0; i<response.length; i++) {
+
+            var option = document.createElement("option");
+            option.value = response[i].NUMERO;
+            option.text = response[i].IDENTIFICACION +" - "+response[i].NOMBRE;
+
+            // VERIFICAMOS SI EL ID DEL PROPIETARIO ES EL MISMO AL ACTUAL
+            // PARA COLOCARLO COMO SELECCIONADO EN LA LISTA DE SELECCIÓN
+            if (identificacionPropietario == response[i].IDENTIFICACION){
+                option.selected = "selected";
+            }
+
+            selectorPropietariosActualizar.add(option);
+        
+        };
+    };
+
+};
+
+// DECLARAMOS LA FUNCIÓN QUE EJECUTA LA ACCIÓN DE ACTUALIZAR LOS DATOS DE UNA FINCA
+botonActualizar.addEventListener('click', function(){
+       
+    const configDB = dbConfig();
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("PUT", configDB + "finca");
+    const body = JSON.stringify({"numeroFinca": etiquetaNumeroFincaAct.innerHTML,"nombreCompleto": inputNombreActualizar.value, "tamano": inputTamanoActualizar.value, "ubicacion": inputUbicacionActualizar.value, "numeroPropietario": selectorPropietariosActualizar.value} );
+
+    xhr.onload = () => {
+    
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(JSON.parse(xhr.responseText));
+            init();// Se recarga la data actualizada, para ser mostrada
+        } else {
+            console.log(`Error: ${xhr.status}`);
+        }
+    };
+
+    xhr.send(body);
 });
