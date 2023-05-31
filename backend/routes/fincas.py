@@ -2,10 +2,31 @@ from flask import jsonify
 import MySQLdb.cursors
 import json
 
+def addFinca(mysql,request):
+        
+    msg = ''
+    datosIngresar = json.loads(request.data)
+
+    if request.method == 'POST' and 'nombreCompleto' in datosIngresar and 'tamano' in datosIngresar and 'ubicacion' in datosIngresar and 'numeroPropietario' in datosIngresar:
+       nombreCompleto    = datosIngresar["nombreCompleto"]
+       tamano            = datosIngresar["tamano"]
+       ubicacion         = datosIngresar["ubicacion"]
+       numeroPropietario = datosIngresar["numeroPropietario"]
+
+       cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+       cursor.execute('INSERT INTO FINCAS_FEX VALUES (NULL, % s, % s, % s, % s)', (nombreCompleto,tamano,ubicacion,numeroPropietario, ))
+       mysql.connection.commit()
+       msg = 'Se ha creado una finca con éxito!'
+    
+    elif request.method == 'POST':
+        msg = 'Por favor ingresar los datos solicitados!'
+    
+    return jsonify(msg)
+
 def getAllFincas(mysql):
  
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute('SELECT A.*, B.IDENTIFICACION, B.NOMBRE AS PROPIETARIO FROM FINCAS_FEX AS A INNER JOIN USUARIOS_FEX AS B ON A.NUM_PROPIETARIO = B.NUMERO')
+    cursor.execute('SELECT A.*, B.IDENTIFICACION, B.NOMBRE AS PROPIETARIO FROM FINCAS_FEX AS A INNER JOIN USUARIOS_FEX AS B ON A.NUM_PROPIETARIO = B.NUMERO ORDER BY A.NUMERO ASC')
     fincas = cursor.fetchall()
     
     return jsonify(fincas)
@@ -18,7 +39,7 @@ def getFincaFiltro(mysql,request):
     if request.method == 'POST' and 'datoIngresado' in datoIngresado:
        dato = datoIngresado["datoIngresado"]      
        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-       cursor.execute("SELECT A.*, B.IDENTIFICACION, B.NOMBRE AS PROPIETARIO FROM FINCAS_FEX AS A INNER JOIN USUARIOS_FEX AS B ON A.NUM_PROPIETARIO = B.NUMERO WHERE A.NUMERO LIKE '%"+dato+"%' OR A.NOMBRE LIKE '%"+dato+"%'")
+       cursor.execute("SELECT A.*, B.IDENTIFICACION, B.NOMBRE AS PROPIETARIO FROM FINCAS_FEX AS A INNER JOIN USUARIOS_FEX AS B ON A.NUM_PROPIETARIO = B.NUMERO WHERE A.NUMERO LIKE '%"+dato+"%' OR A.NOMBRE LIKE '%"+dato+"%' ORDER BY A.NUMERO ASC")
        finca = cursor.fetchall()
        msg = 'Se ha encontrado el colaborador con éxito!'
     

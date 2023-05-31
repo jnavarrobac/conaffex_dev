@@ -53,6 +53,10 @@ def actualizarColaborador():
 
 ## 2. ---- DECLARAMOS LAS RUTAS DE FUNCIÓN DE FINCAS ---- ##
 
+@app.route('/finca',methods = ['POST'])
+def registrarFinca():    
+    return addFinca(mysql,request)
+
 @app.route('/fincas',methods = ['GET'])
 def obtenerFincas():    
     return getAllFincas(mysql)

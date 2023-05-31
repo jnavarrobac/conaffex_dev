@@ -32,7 +32,7 @@ CREATE TABLE `colaborador_fex` (
   `TIPO` varchar(50) DEFAULT NULL,
   `GENERO` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`NUMERO`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `colaborador_fex` (
 
 LOCK TABLES `colaborador_fex` WRITE;
 /*!40000 ALTER TABLE `colaborador_fex` DISABLE KEYS */;
-INSERT INTO `colaborador_fex` VALUES (1,'Daniel Navarro',7788,85647898,1234123456789875,'eed','Nacional','Hombre'),(2,'Ernesto Ilama',17,61884176,7676545432321234,'soltero','Extranjero','Hombre'),(3,'Daniel Romero',23,85647898,1234123456789876,'','Nacional','Hombre'),(4,'Daniel Navarro',0,85647898,1234123456789876,'','Nacional','Hombre'),(5,'Nano romero',0,85647898,1234123456789876,'','Nacional','Hombre'),(6,'Gerardo',303900456,89624962,32423,'','Nacional','Hombre'),(7,'uhffd',432432,32423,32423,'','Extranjero','Mujer'),(8,'sfsfsd',432432,34223,32423,'fdssd','Nacional','Hombre'),(9,'sfsfsd',432432,34223,32423,'fdssd','Nacional','Hombre'),(10,'Mary Navarro',432432,34223,32423,'fdssd','Nacional','Mujer'),(11,'Felipe Luis',34543,76875456,34543,'casa azul','Nacional','Hombre'),(12,'Jose Luis',4543567,52353,3434565676765454,'soltero','Extranjero','Hombre'),(13,'Nano Navarro',53534543,43543,43543,'del llano','Nacional','Hombre'),(14,'eretre',4353,3453,34534,'','Nacional','Hombre'),(15,'Daniel Navarro',435345,43543534,4354345,'casado','Nacional','Hombre');
+INSERT INTO `colaborador_fex` VALUES (1,'Daniel Navarro',7788,85647898,1234123456789875,'eed','Nacional','Hombre'),(2,'Ernesto Ilama',17,61884176,7676545432321234,'soltero','Extranjero','Hombre'),(3,'Daniel Romero',23,85647898,1234123456789876,'','Nacional','Hombre'),(4,'Daniel Navarro',0,85647898,1234123456789876,'','Nacional','Hombre'),(5,'Nano romero',0,85647898,1234123456789876,'','Nacional','Hombre'),(6,'Gerardo',303900456,89624962,1122334455667788,'','Extranjero','Hombre'),(7,'uhffd',432432,32423,32423,'','Extranjero','Mujer'),(8,'sfsfsd',432432,34223,32423,'fdssd','Nacional','Hombre'),(9,'sfsfsd',432432,34223,32423,'fdssd','Nacional','Hombre'),(10,'Mary Navarro',432432,34223,32423,'fdssd','Nacional','Mujer'),(11,'Felipe Luis',34543,76875456,34543,'casa azul','Nacional','Hombre'),(12,'Jose Luis',4543567,52353,3434565676765454,'soltero','Extranjero','Hombre'),(13,'Nano Navarro',53534543,43543,43543,'del llano','Nacional','Hombre'),(14,'eretre',4353,3453,34534,'','Nacional','Hombre'),(15,'Daniel Navarro',435345,43543534,4354345,'casado','Nacional','Hombre'),(16,'Vladimir',35,33445566,1122334455667788,'Origen de panamá','Extranjero','Hombre'),(17,'Beto',2432,33445566,3243243243243242,'','Nacional','Hombre'),(18,'Francisco',12,223322,54354364343,'Mexico','Nacional','Hombre');
 /*!40000 ALTER TABLE `colaborador_fex` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,13 +55,13 @@ DROP TABLE IF EXISTS `fincas_fex`;
 CREATE TABLE `fincas_fex` (
   `NUMERO` int NOT NULL AUTO_INCREMENT,
   `NOMBRE` varchar(150) DEFAULT NULL,
-  `TAMAÑO` float DEFAULT NULL,
+  `TAMANO` float DEFAULT NULL,
   `UBICACION` text,
   `NUM_PROPIETARIO` int DEFAULT NULL,
   PRIMARY KEY (`NUMERO`),
   KEY `NUM_PROPIETARIO` (`NUM_PROPIETARIO`),
   CONSTRAINT `fincas_fex_ibfk_1` FOREIGN KEY (`NUM_PROPIETARIO`) REFERENCES `usuarios_fex` (`NUMERO`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `fincas_fex` (
 
 LOCK TABLES `fincas_fex` WRITE;
 /*!40000 ALTER TABLE `fincas_fex` DISABLE KEYS */;
-INSERT INTO `fincas_fex` VALUES (1,'Patricio',3.5,'Caragral del Guarco',2),(2,'Rio Conejo Beneficio',5,'Rio Conejo, Cartago',3);
+INSERT INTO `fincas_fex` VALUES (1,'Patricio 2',5,'Caragral del Guarco',2),(2,'Rio Conejo Beneficio',3,'Rio Conejo, Cartago',1),(3,'La Canoa',6,'Llano los Ángeles, Corralillo',1),(4,'La Pascuala',4.5,'San Gabriel de Aserrí',3);
 /*!40000 ALTER TABLE `fincas_fex` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-24 21:36:48
+-- Dump completed on 2023-05-31 17:43:46

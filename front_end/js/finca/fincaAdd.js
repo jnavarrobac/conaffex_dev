@@ -43,3 +43,34 @@ function init() {
         };
     };
 };
+
+// DECLARAMOS LA FUNCIÓN QUE SE ENCARGA DE ALMACENAR UNA NUEVA FINCA
+botonAgregar.addEventListener('click', function(){
+       
+    const configDB = dbConfig();
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", configDB + "finca");
+    const body = JSON.stringify({"nombreCompleto": inputNombreAgregar.value, "tamano": inputTamanoAgregar.value, "ubicacion": inputUbicacionAgregar.value, "numeroPropietario": selectorPropietarioAgregar.value} );
+
+    xhr.onload = () => {
+    
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(JSON.parse(xhr.responseText));
+
+        } else {
+            console.log(`Error: ${xhr.status}`);
+        }
+    };
+
+    xhr.send(body);
+});
+
+// ACCIÓN PARA LIMPIAR LOS CAMPOS DE AGREGAR FINCA
+botonCancelar.addEventListener('click', function(){
+       
+    inputNombreAgregar.value = "";
+    inputTamanoAgregar.value = "";
+    inputUbicacionAgregar.value = "";
+   
+});
