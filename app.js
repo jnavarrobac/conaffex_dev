@@ -28,7 +28,12 @@ router.get('/modfinca',function(req,res){
     res.sendFile(path.join(__dirname+'/front_end/views/modificar_finca.html'));
 }); 
 
- 
+// 3 - Redireccionamos a las páginas de control de produccion
+router.get('/main',function(req,res){
+    res.sendFile(path.join(__dirname+'/front_end/views/produccion.html'));
+});
+
+
 //add the router
 app.use('/', router);
 app.listen(process.env.port || 3000);

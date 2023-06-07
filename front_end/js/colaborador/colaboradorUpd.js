@@ -83,7 +83,7 @@ function setColaboradoresTabla(data){
         cell5.innerHTML = data[i].NUM_TARJETA;
         cell5.className = "text-center";
         
-        cell6.innerHTML = "<td><button type='button' class='btn btn-inverse-info btn-icon' onclick=seleccionarColaborador("+data[i].NUMERO+");><i class='mdi mdi-account-settings'></i></button></td>";
+        cell6.innerHTML = "<td><button type='button' class='btn btn-inverse-warning btn-icon' onclick=seleccionarColaborador("+data[i].NUMERO+");><i class='mdi mdi-account-settings'></i></button></td>";
         cell6.className = "text-center";
 
     };

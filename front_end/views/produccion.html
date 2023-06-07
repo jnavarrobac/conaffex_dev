@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Añadir Finca | Conaffex</title>
+    <title>Producción | Conaffex</title>
 
     <!-- plugins:css -->
     <link rel="stylesheet" href="../assets/vendors/mdi/css/materialdesignicons.min.css">
@@ -18,9 +18,10 @@
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/date.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../assets/images/favicon.png" />
-
+    
   </head>
   <body>
     <div class="container-scroller">
@@ -163,58 +164,22 @@
             <ul class="navbar-nav w-100">
               <li class="nav-item w-100">
                 <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                  <input type="text" class="form-control" placeholder="Search products">
+                  <input type="text" class="form-control dateselect">
                 </form>
                 
               </li>
             </ul>
+            <ul class="navbar-nav w-100">
+              <li class="nav-item w-100">
+                <div class="nav-link mt-2 mt-md-0 d-none d-lg-flex">
+                  <select class="form-control" id="selectorFincaProduccion">
+                    <option value="">- Seleccione una finca -</option>                                
+                  </select>
+                </div>                
+              </li>
+            </ul>
             <ul class="navbar-nav navbar-nav-right">
-              <li class="nav-item dropdown d-none d-lg-block">
-                <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
-                  <h6 class="p-3 mb-0">Projects</h6>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-dark rounded-circle">
-                        <i class="mdi mdi-file-outline text-primary"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject ellipsis mb-1">Software Development</p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-dark rounded-circle">
-                        <i class="mdi mdi-web text-info"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject ellipsis mb-1">UI Development</p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-dark rounded-circle">
-                        <i class="mdi mdi-layers text-danger"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject ellipsis mb-1">Software Testing</p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <p class="p-3 mb-0 text-center">See all projects</p>
-                </div>
-              </li>
-              <li class="nav-item nav-settings d-none d-lg-block">
-                <a class="nav-link" href="#">
-                  <i class="mdi mdi-view-grid"></i>
-                </a>
-              </li>
+              
               <li class="nav-item dropdown border-left">
                 <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                   <i class="mdi mdi-email"></i>
@@ -349,57 +314,9 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> Añadir Finca </h3>
+              <h3 class="page-title"> Producción Colaboradores </h3>
             </div>
-            <div class="row">              
-              <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">             
-                      <p class="card-description"> Datos de la Finca:</p>
-                      <div class="row">                    
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Nombre:</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" id="campoNombreAgregar"/>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Tamaño:</label>
-                            <div class="col-sm-9">
-                              <input type="number" class="form-control" id="campoTamanoAgregar"/>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Ubicación:</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" id="campoUbicacionAgregar"/>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Propietario:</label>
-                            <div class="col-sm-9">
-                              <select class="form-control" id="selectorPropietarioAgregar">                                
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>                      
-                      <button id="buttonAgregar" type="button" class="btn btn-primary mr-2">Agregar</button>
-                      <button id="buttonCancelar" type="button"  class="btn btn-dark">Cancelar</button>
-                      
-                  </div>
-                </div>
-              </div>                      
-            </div>
+            
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:../../partials/_footer.html -->
@@ -435,9 +352,14 @@
     <script src="../assets/js/typeahead.js"></script>
     <script src="../assets/js/select2.js"></script>
     <!-- End custom js for this page -->
+    
 
-    <!-- Referenciamos al script que contiene la lógica de negocio -->
-    <script src="../js/finca/fincaAdd.js"></script>   
+    <script>
+      $('.dateselect').datepicker({
+        format: 'mm/dd/yyyy',
+        // startDate: '-3d'
+      });
+    </script>
 
   </body>
 </html>
