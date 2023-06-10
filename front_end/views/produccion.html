@@ -19,6 +19,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/date.css">
+    
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../assets/images/favicon.png" />
     
@@ -164,11 +165,10 @@
             <ul class="navbar-nav w-100">
               <li class="nav-item w-100">
                 <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                  <input type="text" class="form-control dateselect">
-                </form>
-                
-              </li>
-            </ul>
+                  <input type="text" class="form-control" id="campoFechaProduccion">
+                </form>                
+              </li>                                  
+            </ul>            
             <ul class="navbar-nav w-100">
               <li class="nav-item w-100">
                 <div class="nav-link mt-2 mt-md-0 d-none d-lg-flex">
@@ -352,14 +352,10 @@
     <script src="../assets/js/typeahead.js"></script>
     <script src="../assets/js/select2.js"></script>
     <!-- End custom js for this page -->
-    
 
-    <script>
-      $('.dateselect').datepicker({
-        format: 'mm/dd/yyyy',
-        // startDate: '-3d'
-      });
-    </script>
+    <!-- Referenciamos al script que contiene la lógica de negocio -->
+    <script src="../js/produccion/produccion.js"></script>
+
 
   </body>
 </html>
