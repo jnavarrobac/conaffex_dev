@@ -1,97 +1,35 @@
-from flask import jsonify
-import MySQLdb.cursors
-import json
+from flask import Flask, jsonify, request
 
-def addColaborador(mysql,request):
-    
-    msg = ''
-    datosIngresar = json.loads(request.data)
+## Importamos los files con las funciones de cada módulo
+from backend.controller.ColaboradorController import *
+from backend.config.MySQL import *
 
-    if request.method == 'POST' and 'nombreCompleto' in datosIngresar and 'identificacion' in datosIngresar and 'tarjeta' in datosIngresar and 'telefono' in datosIngresar and 'observaciones' in datosIngresar and 'tipo' in datosIngresar and 'genero' in datosIngresar:
-       nombreCompleto = datosIngresar["nombreCompleto"]
-       identificacion = datosIngresar["identificacion"]
-       tarjeta        = datosIngresar["tarjeta"]
-       telefono       = datosIngresar["telefono"]
-       observaciones  = datosIngresar["observaciones"]
-       tipo           = datosIngresar["tipo"]
-       genero         = datosIngresar["genero"]
+app = Flask(__name__)
 
-       cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-       cursor.execute('INSERT INTO COLABORADOR_FEX VALUES (NULL, % s, % s, % s, % s, % s, % s, % s)', (nombreCompleto,identificacion,telefono,tarjeta,observaciones,tipo,genero, ))
-       mysql.connection.commit()
-       msg = 'Se ha creado un colaborador con éxito!'
-    
-    elif request.method == 'POST':
-        msg = 'Por favor ingresar los datos solicitados!'
-    
-    return jsonify(msg)
+## LLAMAMOS LA INSTANCIA DE LA BASE DE DATOS ## 
 
+conexionBaseDatos = obtenterInstanciaDB(app)
 
-def getAllColaboradores(mysql):
- 
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute('SELECT * FROM COLABORADOR_FEX')
-    colaboradores = cursor.fetchall()
-    
-    return jsonify(colaboradores)
+## 1. ---- DECLARAMOS LAS RUTAS DE FUNCIÓN DE COLABORADOR ---- ##
 
+@app.route('/colaborador',methods = ['POST'])
+def registrarColaborador():    
+    return addColaborador(conexionBaseDatos,request)
 
-def getColaboradorFiltro(mysql,request):
- 
-    colaborador = ''
-    datoIngresado = json.loads(request.data)
+@app.route('/colaborador',methods = ['GET'])
+def obtenerColaboradores():    
+    return getAllColaboradores(conexionBaseDatos)
 
-    if request.method == 'POST' and 'datoIngresado' in datoIngresado:
-       dato = datoIngresado["datoIngresado"]      
-       cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-       cursor.execute("SELECT * FROM COLABORADOR_FEX WHERE NUMERO LIKE '%"+dato+"%' OR NOMBRE LIKE '%"+dato+"%'")
-       colaborador = cursor.fetchall()
-       msg = 'Se ha encontrado el colaborador con éxito!'
-    
-    elif request.method == 'POST':
-       msg = 'No se ha encontrado ningún colaborador!'
+@app.route('/colaboradorfiltro/<valor>',methods = ['GET'])
+def obtenerColaborador(valor):    
+    return getColaboradorFiltro(conexionBaseDatos,request,valor)
 
-    return jsonify(colaborador)
+@app.route('/getOneColaborador',methods = ['POST'])
+def obtenerOneColaborador():    
+    return getOneColaborador(conexionBaseDatos,request)
 
-def getOneColaborador(mysql,request):
- 
-    colaborador = ''
-    datoIngresado = json.loads(request.data)
+@app.route('/colaborador',methods = ['PUT'])
+def actualizarColaborador():    
+    return updateColaborador(conexionBaseDatos,request)
 
-    if request.method == 'POST' and 'datoIngresado' in datoIngresado:
-       dato = datoIngresado["datoIngresado"]      
-       cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-       sql_select_query = """SELECT * FROM COLABORADOR_FEX WHERE NUMERO = %s"""
-       cursor.execute(sql_select_query, (dato,))
-       colaborador = cursor.fetchall()
-       msg = 'Se ha encontrado el colaborador con éxito!'
-    
-    elif request.method == 'POST':
-       msg = 'No se ha encontrado ningún colaborador!'
-
-    return jsonify(colaborador)
-
-def updateColaborador(mysql,request):
-
-    msg = ''
-    datosActualizar = json.loads(request.data)
-
-    if request.method == 'PUT' and 'numeroColaborador' in datosActualizar and 'nombreCompleto' in datosActualizar and 'identificacion' in datosActualizar and 'tarjeta' in datosActualizar and 'telefono' in datosActualizar and 'tipo' in datosActualizar and 'genero' in datosActualizar:
-       numeroColaborador = datosActualizar["numeroColaborador"]
-       nombreCompleto = datosActualizar["nombreCompleto"]
-       identificacion = datosActualizar["identificacion"]
-       tarjeta        = datosActualizar["tarjeta"]
-       telefono       = datosActualizar["telefono"]
-       tipo           = datosActualizar["tipo"]
-       genero         = datosActualizar["genero"]
-
-       cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-       cursor.execute("UPDATE COLABORADOR_FEX SET NOMBRE = %s, IDENTIFICACION = %s, TELEFONO = %s, NUM_TARJETA = %s, TIPO = %s,GENERO = %s WHERE NUMERO = %s",
-                     (nombreCompleto, identificacion, telefono, tarjeta, tipo,genero,numeroColaborador))
-       mysql.connection.commit()
-       msg = 'Se ha actualizado el colaborador con éxito!'
-    
-    elif request.method == 'PUT':
-        msg = 'Por favor ingresar los datos solicitados!'
-    
-    return jsonify(msg)
+## 1. ---- DECLARAMOS LAS RUTAS DE FUNCIÓN DE COLABORADOR ---- ##

@@ -94,10 +94,9 @@ function setColaboradoresTabla(data){
 inputColaboradoresBuscar.addEventListener('keyup', function(){
     
     const configDB = dbConfig();
-
     const xhr = new XMLHttpRequest();
-    const body = JSON.stringify({"datoIngresado": inputColaboradoresBuscar.value} );
-    xhr.open('POST', configDB + 'getColaboradorFiltro');
+    //const body = JSON.stringify({"datoIngresado": inputColaboradoresBuscar.value} );
+    xhr.open('GET', configDB + 'colaboradorfiltro/' + inputColaboradoresBuscar.value);
     xhr.responseType = 'json';
     xhr.send(body);
 
