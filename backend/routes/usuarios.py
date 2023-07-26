@@ -1,16 +1,11 @@
-from flask import Blueprint, render_template
+from flask import jsonify
+import MySQLdb.cursors
+import json
 
-## Importamos los files con las funciones de cada módulo
-from backend.controller.UsuarioController import *
-from backend.config.MySQL import database
-
-## Instanciamos las rutas de usuarios
-usuarios_api = Blueprint('usuarios_api',__name__)
-
-## 3. ---- DECLARAMOS LAS RUTAS DE FUNCIÓN DE USUARIOS ---- ##
-
-@usuarios_api.route('/usuarios',methods = ['GET'])
-def obtenerUsuarios():    
-    return getAllUsuarios(database)
-
-## 3. ---- DECLARAMOS LAS RUTAS DE FUNCIÓN DE USUARIOS ---- ##
+def getAllUsuarios(mysql):
+ 
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('SELECT * FROM USUARIOS_FEX')
+    usuarios = cursor.fetchall()
+    
+    return jsonify(usuarios)
